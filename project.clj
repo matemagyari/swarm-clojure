@@ -5,7 +5,8 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :source-paths ["src"]
   :test-paths ["test"]
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/tools.cli "0.3.5"]
                  [org.clojure/test.check "0.6.1"]
                  [org.clojure/core.typed "0.2.77"]]
   :main swarm.main)
