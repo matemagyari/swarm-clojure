@@ -1,6 +1,4 @@
-(ns
-  swarm.view-adapter
-  (:require [clojure.test :as test]))
+(ns swarm.view-adapter)
 
 (defn- entity->view
   "Convert an entity to a view - a tuple"

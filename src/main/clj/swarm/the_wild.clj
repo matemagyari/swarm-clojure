@@ -1,8 +1,7 @@
 (ns
   ^{:doc "Entities"}
   swarm.the-wild
-  (:require [swarm.vector-algebra :as va]
-            [clojure.test :as test]))
+  (:require [swarm.vector-algebra :as va]))
 
 (defn enitites-of-type
   "Create entities of given type on random locations"
@@ -11,7 +10,7 @@
     (for [i (range n)
           :let [map-1 {:position {:x (int (* (rand-factor) (first dim-board)))
                                   :y (int (* (rand-factor) (second dim-board)))}
-                       :g-map g-map}]]
+                       :g-map    g-map}]]
       (merge entity-template map-1 traits))))
 
 
@@ -19,9 +18,9 @@
   "Creates a Wall entity on the given location"
   [x y]
   {:position {:x x :y y}
-   :type :wall
-   :speed 0
-   :stray 0})
+   :type     :wall
+   :speed    0
+   :stray    0})
 
 (defn cull-sheeps
   "Kill the sheeps that are in the killing range of a wolf"
@@ -39,7 +38,7 @@
                         (type-of? e :sheep)
                         (close-to-wolf? e))
                     (assoc e :type :dead-sheep
-                              :speed 0)
+                             :speed 0)
                     e))
         sheeps (filter type-of? :sheep)]
     (pmap alter-e entities)))

@@ -1,6 +1,5 @@
 (ns swarm.main
-  (:require [clojure.test :as test]
-            [swarm.swarm :as swarm]
+  (:require [swarm.swarm :as swarm]
             [swarm.the-wild :as w]
             [swarm.display :as display]
             [swarm.view-adapter :as v]
