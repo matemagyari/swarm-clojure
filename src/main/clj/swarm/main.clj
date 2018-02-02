@@ -14,7 +14,8 @@
    :min-proximity     1.0})
 
 (def entity-template
-  {:position       nil
+  {:id             nil
+   :position       nil
    :speed          3
    :stray-tendency {:random-max (/ Math/PI 100)             ; defines the angle the entity can deviate from the gravitational vector
                     :constant   (/ Math/PI 8)}

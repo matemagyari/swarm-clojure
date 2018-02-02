@@ -16,7 +16,7 @@
         (va/v* multiplier dir)))))
 
 (defn sum-gravity-vector
-  "Calculates the total gravity force vector imposed on the subject-entity by the other entitites"
+  "Calculates the total gravity force vector imposed on the subject-entity by the other entities"
   [subject-entity entities global-constants]
   (let [g-map (:g-map subject-entity)
         to-force (fn [entity]

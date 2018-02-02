@@ -33,10 +33,10 @@
                           (repeatedly rand-factor)))]
     (for [ie indexed-entities
           :let [entity (second ie)
-                others-transd (comp
-                                (remove #(= ie %))
-                                (map second))
-                others (sequence others-transd indexed-entities)
+                others (let [others-transd (comp
+                                             (remove #(= ie %))
+                                             (map second))]
+                         (sequence others-transd indexed-entities))
                 rand-num (nth rand-nums (first ie))
                 next-pos (next-position global-constants entity others rand-num)]]
       (assoc entity :position next-pos))))
