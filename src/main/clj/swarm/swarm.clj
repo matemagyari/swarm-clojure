@@ -27,25 +27,17 @@
 (defn next-positions
   "Calculate the next positions of the entitites"
   [entitites global-constants rand-factor]
-  (let [indexed-entities (map-indexed vector entitites)
-        rand-nums (vec
-                    (take (count indexed-entities)
-                          (repeatedly rand-factor)))]
-    (for [ie indexed-entities
-          :let [entity (second ie)
-                others (let [others-transd (comp
-                                             (remove #(= ie %))
-                                             (map second))]
-                         (sequence others-transd indexed-entities))
-                rand-num (nth rand-nums (first ie))
-                next-pos (next-position global-constants entity others rand-num)]]
-      (assoc entity :position next-pos))))
+  (for [entity entitites
+        :let [others (remove #(= (:id entity) (:id %))
+                             entitites)
+              next-pos (next-position global-constants entity others (rand-factor))]]
+    (assoc entity :position next-pos)))
 
 (def global-constants
   {:gravity-constants {:sheep {:sheep 1
                                :wolf  -2
                                :wall  -1}
-                       :wolf  {:sheep 2
+                       :wolf  {:sheep 5
                                :wolf  1
                                :wall  -1}}
    :min-proximity     1.0})

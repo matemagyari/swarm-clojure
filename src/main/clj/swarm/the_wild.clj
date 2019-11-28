@@ -1,14 +1,20 @@
 (ns
   ^{:doc "Entities"}
   swarm.the-wild
-  (:require [swarm.vector-algebra :as va]))
+  (:require [swarm.vector-algebra :as va])
+  (:import (java.util.concurrent.atomic AtomicInteger)))
+
+(def generate-id
+  (let [gen (new AtomicInteger)]
+    (fn [] (.incrementAndGet gen))))
 
 (defn enitites-of-type
   "Create entities of given type on random locations"
   [n traits entity-template global-constants dim-board rand-factor]
   (let [g-map (get-in global-constants [:gravity-constants (:type traits)])]
     (for [i (range n)
-          :let [map-1 {:position {:x (int (* (rand-factor) (first dim-board)))
+          :let [map-1 {:id (generate-id)
+                       :position {:x (int (* (rand-factor) (first dim-board)))
                                   :y (int (* (rand-factor) (second dim-board)))}
                        :g-map    g-map}]]
       (merge entity-template map-1 traits))))
